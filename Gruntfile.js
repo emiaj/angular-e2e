@@ -69,6 +69,17 @@ module.exports = function (grunt) {
             ];
           }
         }
+      },
+      e2e: {
+        options: {
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'test'),
+              mountFolder(connect, 'app')
+            ];
+          }
+        }
       }
     },
     open: {
@@ -102,6 +113,14 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      e2e: {
+        configFile: 'karma-e2e.conf.js',
+        singleRun: false,
+        autoWatch: true,
+        proxies: {
+          '/app/': 'http://localhost:9000/'
+        }
       }
     },
     coffee: {
@@ -277,7 +296,15 @@ module.exports = function (grunt) {
     'coffee',
     'compass',
     'connect:test',
-    'karma'
+    'karma:unit'
+  ]);
+
+  grunt.registerTask('e2e', [
+    'clean:server',
+    'coffee',
+    'compass',
+    'connect:e2e',
+    'karma:e2e'
   ]);
 
   grunt.registerTask('build', [
