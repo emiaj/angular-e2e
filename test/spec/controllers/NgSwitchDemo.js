@@ -16,7 +16,12 @@ describe('Controller: NgSwitchDemoCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('has three options',function(){
+    expect(scope.options.length).toBe(3);
+    expect(scope.options).toEqual(['1st','2nd','3rd']);
   });
+  it('sets the first option as selected',function(){
+    expect(scope.selection).toBe(scope.options[0]);
+  });
+
 });
