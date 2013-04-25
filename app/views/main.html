@@ -7,3 +7,13 @@
   <p>installed.</p>
   <h3>Enjoy coding! - Yeoman</h3>
 </div>
+<div class="hero-unit switchsample" data-ng-controller='NgSwitchDemoCtrl'>
+	<select data-ng-model="selection" data-ng-options="option for option in options"></select>
+	<tt>selection is {{selection}}</tt>
+	<hr/>
+	<div class='results' data-ng-switch="" on="selection">
+		<div data-ng-switch-default="">First Option Selected</div>
+		<div data-ng-switch-when="2nd">Second Option Selected</div>
+		<div data-ng-switch-when="3rd">Third Option Selected</div>
+	</div>
+</div>
